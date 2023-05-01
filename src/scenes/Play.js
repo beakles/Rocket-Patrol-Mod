@@ -54,6 +54,7 @@ class Play extends Phaser.Scene {
     // add beefy spaceship (x1)
     this.beefyShip01 = new BeefySpaceship(this, -game.config.width, borderUISize*6 + borderPadding*10, 'spaceshipbeefy', 0, 50).setOrigin(0, 0);
 
+    // randomize ship rotations
     let diceRoll = Phaser.Math.Between(1, 100);
     if (diceRoll < 50) {
       this.ship01.setX(0 - this.ship03.width - borderUISize*6)
@@ -102,6 +103,8 @@ class Play extends Phaser.Scene {
       },
       fixedWidth: 100
     }
+
+    // display high score
     let highScoreConfig = {
       fontFamily: 'Courier',
       fontSize: '14px',
@@ -116,6 +119,7 @@ class Play extends Phaser.Scene {
     }
     // this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
 
+    // score tracker
     this.scoreText = this.add.text(game.config.width/2 - 200, borderUISize + borderPadding*2, "SCORE", highScoreConfig).setOrigin(0.5, 0);
     this.scoreLeft = this.add.text(game.config.width/2 - 200, borderUISize + borderPadding*2 + 20, highestScore, highScoreConfig).setOrigin(0.5, 0);
 
@@ -141,11 +145,13 @@ class Play extends Phaser.Scene {
     }, null, this);
     */
 
+    // Music by Lesiakower from Pixabay: https://pixabay.com/music/video-games-item-obtained-123644/
     this.music = this.sound.add('music_loop');
     this.music.setVolume(0.5);
     this.music.setLoop(true);
     this.music.play();
 
+    // fire text that appears when the rocket fires
     let fireConfig = {
       fontFamily: 'Courier',
       fontSize: '14px',
@@ -159,6 +165,7 @@ class Play extends Phaser.Scene {
       fixedWidth: 50
     }
 
+    // set to invisible, reveals itself when the player fires the rocket
     this.fireText = this.add.text(game.config.width/2 - 100, borderUISize + borderPadding*2, "FIRE", fireConfig).setOrigin(0.5, 0);
     this.fireText.setVisible(false);
   }
