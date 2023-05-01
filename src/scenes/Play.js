@@ -215,6 +215,7 @@ class Play extends Phaser.Scene {
       this.music.stop();
       gameTime = 0;
       currentGameTime = 0;
+      gameTimeDebounce = false;
       difficultyTime = 0;
       this.scene.start("menuScene");
     }
