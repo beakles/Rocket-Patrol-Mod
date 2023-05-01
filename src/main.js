@@ -73,8 +73,4 @@ let rocketMoving = false;
 let borderUISize = game.config.height / 15;
 let borderPadding = borderUISize / 3;
 
-let time = 0;
-let delta = 0;
-let previousTime = 0;
-let fps = 0;
 let increment = 0;

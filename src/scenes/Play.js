@@ -121,7 +121,7 @@ class Play extends Phaser.Scene {
 
     // score tracker
     this.scoreText = this.add.text(game.config.width/2 - 200, borderUISize + borderPadding*2, "SCORE", highScoreConfig).setOrigin(0.5, 0);
-    this.scoreLeft = this.add.text(game.config.width/2 - 200, borderUISize + borderPadding*2 + 20, highestScore, highScoreConfig).setOrigin(0.5, 0);
+    this.scoreLeft = this.add.text(game.config.width/2 - 200, borderUISize + borderPadding*2 + 20, this.p1Score, highScoreConfig).setOrigin(0.5, 0);
 
     // high score tracker
     this.highScoreText = this.add.text(game.config.width/2, borderUISize + borderPadding*2, "HIGH SCORE", highScoreConfig).setOrigin(0.5, 0);
@@ -224,8 +224,6 @@ class Play extends Phaser.Scene {
     this.planet.tilePositionX -= 0.1;
     this.planet.tilePositionY -= 0.01;
 
-    currentGameTime += increment;// (1000 / 120);
-
     if (rocketMoving) {
       this.fireText.setVisible(true);
     } else {
@@ -249,6 +247,7 @@ class Play extends Phaser.Scene {
       this.ship03.update();
       this.beefyShip01.update();          // update beefy spaceship (x1)
       gameTime -= increment;// (1000 / 120);
+      currentGameTime += increment;// (1000 / 120);
       this.timeCounter.text = Math.ceil(gameTime / 1000);
     }
 
