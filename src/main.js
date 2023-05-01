@@ -27,6 +27,7 @@ mods implemented:
   - Used jsfxr to create 4 explosion sounds, then used Phaser's Math.Between function to generate domains such that each sound has roughly a 20% chance of being played.
 + Display the time remaining (in seconds) on the screen (10)
   - Overhauled the time management of the game to instead use a global variable that ticks down over time. This allows me to display the remaining time accurately.
+  - The problem is that the game now runs at my monitor's refresh rate (120 hz = 120 fps) so I used https://phaser.discourse.group/t/different-game-speed-depending-on-monitor-refresh-rate/7231 to limit the game's framerate to 60 frames per second.
 + Create a new title screen (e.g., new artwork, typography, layout) (10)
   - Moved the prompts to the side-corners of the screen and moved the title to the top.
 + Implement parallax scrolling for the background (10)
@@ -45,6 +46,8 @@ Sound effects created via jsfxr: https://sfxr.me/
 Rocket patrol codebase adapted from Nathan Altice: https://pre83.com/CMPM120/Project%2001%20%20Phaser%203%20Rocket%20Patrol%20Tutorial.html
 Background music by Lesiakower from Pixabay: https://pixabay.com/music/video-games-item-obtained-123644/
 Phaser API documentation extensively used for the project: https://newdocs.phaser.io/docs/3.60.0
+https://phaser.discourse.group/t/different-game-speed-depending-on-monitor-refresh-rate/7231
+- used the above resource to have the game's runtime not be affected by my monitor's refresh rate
 */
 
 let config = {
@@ -69,3 +72,9 @@ let rocketMoving = false;
 // set UI sizes
 let borderUISize = game.config.height / 15;
 let borderPadding = borderUISize / 3;
+
+let time = 0;
+let delta = 0;
+let previousTime = 0;
+let fps = 0;
+let increment = 0;

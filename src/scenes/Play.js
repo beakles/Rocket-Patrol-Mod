@@ -170,7 +170,12 @@ class Play extends Phaser.Scene {
     this.fireText.setVisible(false);
   }
 
-  update() {
+// https://phaser.discourse.group/t/different-game-speed-depending-on-monitor-refresh-rate/7231
+// used the above resource to have the game's runtime not be affected by my monitor's refresh rate
+// phaser's update() function automatically provides the time and delta.
+  update(time, delta) {
+
+    increment = 60 / delta; // how many frames per second
 
     if (gameTime <= 0 && !this.gameOver) {
       this.gameOver = true;
@@ -219,7 +224,7 @@ class Play extends Phaser.Scene {
     this.planet.tilePositionX -= 0.1;
     this.planet.tilePositionY -= 0.01;
 
-    currentGameTime += (1000 / 30);
+    currentGameTime += increment;// (1000 / 120);
 
     if (rocketMoving) {
       this.fireText.setVisible(true);
@@ -243,7 +248,7 @@ class Play extends Phaser.Scene {
       this.ship02.update();
       this.ship03.update();
       this.beefyShip01.update();          // update beefy spaceship (x1)
-      gameTime -= (1000 / 30);
+      gameTime -= increment;// (1000 / 120);
       this.timeCounter.text = Math.ceil(gameTime / 1000);
     }
 
