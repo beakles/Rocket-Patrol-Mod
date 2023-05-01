@@ -10,6 +10,12 @@ class Menu extends Phaser.Scene {
     this.load.audio('sfx_select', './assets/blip_select12.wav');
     this.load.audio('sfx_explosion', './assets/explosion38.wav');
     this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+    this.load.audio('music_loop', './assets/item-obtained-123644.mp3')
+
+    this.load.audio('sfx_explosion1', './assets/explosion1.wav');
+    this.load.audio('sfx_explosion2', './assets/explosion2.wav');
+    this.load.audio('sfx_explosion3', './assets/explosion3.wav');
+    this.load.audio('sfx_explosion4', './assets/explosion4.wav');
   }
 
   create() {
@@ -27,11 +33,13 @@ class Menu extends Phaser.Scene {
     }
 
     // show menu text
-    this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
-    this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
+    this.add.text(game.config.width/2, game.config.height/2 - 200, ' ROCKET PATROL 2 \n ELECTRIC BOOGALOO ', menuConfig).setOrigin(0.5).setAlign("center");
+    this.add.text(game.config.width/2 - 200, game.config.height/2 - 100, ' CONTROLS ', menuConfig).setOrigin(0.5).setAlign("center");
+    this.add.text(game.config.width/2 - 200, game.config.height/2, ' ← → = MOVE \n [F] = FIRE ', menuConfig).setOrigin(0.5).setAlign("center");
     menuConfig.backgroundColor = '#00FF00';
     menuConfig.color = '#000';
-    this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
+    this.add.text(game.config.width/2 + 200, game.config.height/2 - 100, ' DIFFICULTY ', menuConfig).setOrigin(0.5).setAlign("center");
+    this.add.text(game.config.width/2 + 200, game.config.height/2, ' ← = EASY \n → = HARD ', menuConfig).setOrigin(0.5).setAlign("center");
     /*
     this.add.text(20, 20, "Rocket Patrol Menu");
     this.scene.start("playScene");
@@ -47,8 +55,11 @@ class Menu extends Phaser.Scene {
       // easy mode
       game.settings = {
         spaceshipSpeed: 3,
-        gameTimer: 60000
+        chosenDifficulty: "easy",
       }
+      difficultyTime = 60000;
+      gameTime = difficultyTime;
+      currentGameTime = 0;
       this.sound.play('sfx_select');
       this.scene.start('playScene');
     }
@@ -56,8 +67,11 @@ class Menu extends Phaser.Scene {
       // hard mode
       game.settings = {
         spaceshipSpeed: 4,
-        gameTimer: 45000
+        chosenDifficulty: "hard",
       }
+      difficultyTime = 45000;
+      gameTime = difficultyTime;
+      currentGameTime = 0;
       this.sound.play('sfx_select');
       this.scene.start('playScene');
     }

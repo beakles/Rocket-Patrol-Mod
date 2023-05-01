@@ -15,8 +15,7 @@ class BeefySpaceship extends Phaser.GameObjects.Sprite {
   }
 
   update() {
-    // move spaceship left
-    this.x += this.moveSpeed * 2;
+    this.x += this.moveSpeed * 1.5;
 
     // wrap around from right edge to left edge
     if (this.x >= 0) {
