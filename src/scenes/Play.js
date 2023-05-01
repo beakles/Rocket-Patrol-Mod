@@ -219,7 +219,7 @@ class Play extends Phaser.Scene {
     this.planet.tilePositionX -= 0.1;
     this.planet.tilePositionY -= 0.01;
 
-    currentGameTime += (1000 / 60);
+    currentGameTime += (1000 / 30);
 
     if (rocketMoving) {
       this.fireText.setVisible(true);
@@ -243,7 +243,7 @@ class Play extends Phaser.Scene {
       this.ship02.update();
       this.ship03.update();
       this.beefyShip01.update();          // update beefy spaceship (x1)
-      gameTime -= (1000 / 60);
+      gameTime -= (1000 / 30);
       this.timeCounter.text = Math.ceil(gameTime / 1000);
     }
 
